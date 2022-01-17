@@ -1,0 +1,1 @@
+### Сборка билда ---->  [![Build status](https://ci.appveyor.com/api/projects/status/ea4lag491vb0inp9/branch/master?svg=true)](https://ci.appveyor.com/project/Akstel/netology-selenium/branch/master)
