@@ -70,4 +70,30 @@ class CardApplicationNegativeTest {
                 "-id=name] .input__sub")).getText().trim());
 
     }
+
+    @Test
+    public void shouldInvalidPhone() {
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+7 916 123-44-55");
+        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(By.className("button__text")).click();
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.",
+                driver.findElement(By.cssSelector(".input_invalid[data-test-id=phone] .input__sub")).getText().trim());
+
+    }
+
+    @Test
+    public void shouldInvalidСheckbox() {
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79161234455");
+        driver.findElement(By.className("button__text")).click();
+        String text = driver.findElement(By.cssSelector(".input_invalid[data-test-id=agreement]" +
+                " .checkbox__text")).getText();
+        assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных данных" +
+                " и разрешаю сделать запрос в бюро кредитных историй", text.trim());
+
+    }
+
 }
